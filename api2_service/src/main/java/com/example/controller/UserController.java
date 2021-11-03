@@ -29,38 +29,19 @@ public class UserController {
 		return new ResponseEntity<UserResponse>(userService.getUserById(userId), HttpStatus.OK);
 	}
 	
-/*	@PostMapping("/add")
+	@PostMapping("/add")
 	public ResponseEntity<UserResponse> addUser(@RequestBody User user) {
 		return new ResponseEntity<UserResponse>(userService.addUser(user), HttpStatus.CREATED);
-	}*/
-	@PostMapping("/add")
-	public ResponseEntity<UserResponse> addUser(@RequestBody UserRqt userRqt) {
-		return new ResponseEntity<UserResponse>(userService.addUser(this.UserRequestToUser(userRqt)), HttpStatus.CREATED);
 	}
 	
-	/*@PutMapping("/update")
+	@PutMapping("/update")
 	public ResponseEntity<UserResponse> updateUser(@RequestBody User user) {
 		return new ResponseEntity<UserResponse>(userService.updateUser(user), HttpStatus.OK);
-	}
-	*/
-	@PutMapping("/update")
-	public ResponseEntity<UserResponse> updateUser(@RequestBody UserRqt userRqt) {
-		return new ResponseEntity<UserResponse>(userService.updateUser(this.UserRequestToUser(userRqt)), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{userId}")
 	public ResponseEntity<UserResponse> deleteUser(@PathVariable("userId")  Long userId) {
 		return new ResponseEntity<UserResponse>(userService.deleteUser(userId), HttpStatus.OK);
 	}
-
-	 public User UserRequestToUser(UserRqt userRqt) {
-			User user = new User();
-			user.setUserId(userRqt.getRqtuserId());
-			user.setName(userRqt.getRqtname());
-			user.setDob(userRqt.getRqtdob());
-			user.setEmail(userRqt.getRqtemail());
-			user.setMobile(userRqt.getRqtmobile());
-			return user;
-		}
 	
 }
